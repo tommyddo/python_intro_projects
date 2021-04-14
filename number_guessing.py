@@ -1,19 +1,24 @@
 import random
 
-high=10
-low=1
-answer=random.randint(low,high)
+high = 10
+low = 1
+guesses = 3
+answer = random.randint(low, high)
 
-print('Please guess a number between {} and {}.'.format(low,high))
-your_answer=int(input())
+print('Please guess a number between {} and {}.'.format(low, high))
+your_answer = int(input())
 while True:
-    print('guessing in the range of {} and {}.'.format(low,high))
-    if your_answer>answer:
-        print('you need to go lower')
-    elif your_answer<answer:
-        print('you need to go higher')
-    else:
-        print('you got it!')
+    if guesses == 0:
+        print('You took too many guesses. Play again.')
         break
-    your_answer=int(input())
-
+    elif your_answer > answer:
+        print('You need to go lower.')
+        print('You have {} guesses remaining.'.format(guesses))
+    elif your_answer < answer:
+        print('You need to go higher.')
+        print('You have {} guesses remaining.'.format(guesses))
+    else:
+        print('Good guess. You got it!')
+        break
+    your_answer = int(input())
+    guesses -= 1
